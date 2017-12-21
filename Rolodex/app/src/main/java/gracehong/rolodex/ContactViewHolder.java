@@ -2,6 +2,7 @@ package gracehong.rolodex;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -17,6 +18,7 @@ public class ContactViewHolder extends RecyclerView.ViewHolder {
     public TextView startDate;
     public TextView email;
     public TextView bio;
+    public ImageView image;
 
     public ContactViewHolder(View view) {
         super(view);
@@ -26,5 +28,6 @@ public class ContactViewHolder extends RecyclerView.ViewHolder {
         startDate = view.findViewById(R.id.contact_date);
         email = view.findViewById(R.id.contact_email);
         bio = view.findViewById(R.id.contact_bio);
+        image = view.findViewById(R.id.contact_image);
     }
 }

@@ -1,9 +1,12 @@
 package gracehong.rolodex;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -14,9 +17,11 @@ import java.util.ArrayList;
 public class ContactArrayAdapter extends RecyclerView.Adapter<ContactViewHolder> {
 
     private ArrayList<Contact> myContacts;
+    private Context context;
 
-    public ContactArrayAdapter(ArrayList<Contact> contactList) {
+    public ContactArrayAdapter(ArrayList<Contact> contactList, Context context) {
         myContacts = contactList;
+        this.context = context;
     }
 
     @Override
@@ -26,12 +31,15 @@ public class ContactArrayAdapter extends RecyclerView.Adapter<ContactViewHolder>
         String date = myContacts.get(position).getStartDate();
         String email = myContacts.get(position).getEmail();
         String bio = myContacts.get(position).getBio();
+        String imgURL = myContacts.get(position).getPicURL();
 
         holder.name.setText(fullName);
         holder.company.setText(company);
         holder.startDate.setText(date);
         holder.email.setText(email);
         holder.bio.setText(bio);
+
+        Picasso.with(context).load(imgURL).into(holder.image);
     }
 
     @Override

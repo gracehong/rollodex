@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         pullData();
     }
 
-    private void loadDataToView(){
+    private void loadDataToView() {
         RecyclerView contactContainer = findViewById(R.id.contact_list_container);
 
         //Make a layout manager to give all cards a horizontal layout
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         contactContainer.setLayoutManager(horizontalLayoutManager);
 
         //Create a custom adapter so that the array of Contacts are all packaged into the custom contact layout
-        ContactArrayAdapter adapter = new ContactArrayAdapter(myContacts);
+        ContactArrayAdapter adapter = new ContactArrayAdapter(myContacts, getApplicationContext());
         contactContainer.setAdapter(adapter);
     }
 
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private void processData(JSONArray jsonArray) {
         ArrayList<Contact> data = new ArrayList<>();
 
-        for (int i = 0; i < jsonArray.length(); i++){
+        for (int i = 0; i < jsonArray.length(); i++) {
             try {
                 JSONObject contactInfo = jsonArray.getJSONObject(i);
                 Contact contact = new Contact(
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void pullData (){
+    private void pullData() {
         Ion.with(getApplicationContext())
                 .load(dataLocation)
                 .asString()

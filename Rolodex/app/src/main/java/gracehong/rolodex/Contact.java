@@ -1,5 +1,8 @@
 package gracehong.rolodex;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 /**
  * Created by Grace on 12/20/2017.
  */
@@ -18,10 +21,15 @@ public class Contact {
         this.firstName = firstName;
         this.email = email;
         this.company = company;
-        this.startDate = startDate;
+        this.startDate = startDate; //parseStartDate(startDate);
         this.bio = bio;
         this.picURL = picURL;
     }
+
+//    private String parseStartDate(String rawISO){
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+//        String date = sdf.get
+//    }
 
     public String getLastName() {
         return lastName;
