@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="300dp"
-    android:layout_height="300dp"
+    android:layout_height="match_parent"
     android:layout_marginRight="8dp"
     android:orientation="vertical"
     android:padding="8dp"
     android:background="@color/colorWhite">
 
+    <!-- This container holds basic information about the contact
+    (avatar, name, email, start date and company)-->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <!-- Image resource here-->
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/contact_image"/>
+            android:id="@+id/contact_image"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -27,7 +30,8 @@
                 android:id="@+id/contact_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18dp" />
+                android:textStyle="bold"
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/contact_company"
@@ -43,6 +47,7 @@
 
             <TextView
                 android:id="@+id/contact_email"
+                android:textStyle="italic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="12dp" />
@@ -50,6 +55,7 @@
 
     </LinearLayout>
 
+    <!-- This container holds the biography information about the contact-->
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@drawable/gradient_background"
     android:orientation="vertical"
     tools:context="gracehong.rolodex.MainActivity">
 
@@ -12,14 +12,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="10dp"
+        android:layout_margin="16dp"
         android:text="My Contacts"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
         android:textSize="30dp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/contact_list_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="16dp"
         >
 
     </android.support.v7.widget.RecyclerView>

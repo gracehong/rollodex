@@ -39,7 +39,8 @@ public class ContactArrayAdapter extends RecyclerView.Adapter<ContactViewHolder>
         holder.email.setText(email);
         holder.bio.setText(bio);
 
-        Picasso.with(context).load(imgURL).into(holder.image);
+        Picasso.with(context).load(imgURL).resize(200, 200)
+                .centerCrop().into(holder.image);
     }
 
     @Override
