@@ -1,6 +1,10 @@
 package gracehong.rolodex;
 
+import java.lang.reflect.Array;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 
 /**
@@ -21,15 +25,25 @@ public class Contact {
         this.firstName = firstName;
         this.email = email;
         this.company = company;
-        this.startDate = startDate; //parseStartDate(startDate);
+        this.startDate = parseStartDate(startDate);
         this.bio = bio;
         this.picURL = picURL;
     }
 
-//    private String parseStartDate(String rawISO){
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-//        String date = sdf.get
-//    }
+    private String parseStartDate(String rawISO) {
+        String months[] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+
+        try {
+            Date date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(rawISO);
+            String formattedDate = months[date.getMonth()] + " "
+                    + Integer.toString(date.getDate()) + ", "
+                    + Integer.toString(date.getYear()+1900);
+            return formattedDate;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return rawISO;
+        }
+    }
 
     public String getLastName() {
         return lastName;
