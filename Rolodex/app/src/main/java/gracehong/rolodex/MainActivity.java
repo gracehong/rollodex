@@ -7,6 +7,13 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,8 +26,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        myContacts = pullData();
+        pullData();
+    }
 
+    private void loadDataToView(){
         RecyclerView contactContainer = findViewById(R.id.contact_list_container);
 
         //Make a layout manager to give all cards a horizontal layout
@@ -37,11 +46,50 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Helper function that parses JSON data into an array of Contacts
      */
-    private ArrayList<Contact> pullData() {
+    private void processData(JSONArray jsonArray) {
         ArrayList<Contact> data = new ArrayList<>();
 
-        data.add(new Contact("Dummy", "DumDum", "fakedata@gmail.com", "Fakenews", "11/12312/asd", "Nulla eget metus eu erat semper rutrum. Fusce dolor quam, elementum at, egestas a, scelerisque sed, sapien. Nunc pulvinar arcu et pede. Nunc sed orci lobortis *augue* scelerisque mollis. Phasellus libero mauris, aliquam eu, accumsan sed, facilisis vitae, orci. Phasellus dapibus quam quis diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce aliquet magna *a* neque. Nullam ut nisi a odio semper cursus. Integer mollis. *Integer* tincidunt aliquam arcu. Aliquam ultrices iaculis odio. *Nam* interdum enim non nisi. Aenean eget", "myImageUrl.url"));
-        // TODO: implement me!
-        return data;
+        for (int i = 0; i < jsonArray.length(); i++){
+            try {
+                JSONObject contactInfo = jsonArray.getJSONObject(i);
+                Contact contact = new Contact(
+                        contactInfo.getString("lastName"),
+                        contactInfo.getString("firstName"),
+                        contactInfo.getString("email"),
+                        contactInfo.getString("company"),
+                        contactInfo.getString("startDate"),
+                        contactInfo.getString("bio"),
+                        contactInfo.getString("avatar")
+                );
+                data.add(contact);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        myContacts = data;
+
+        loadDataToView();
+    }
+
+
+    private void pullData (){
+        Ion.with(getApplicationContext())
+                .load(dataLocation)
+                .asString()
+                .setCallback(new FutureCallback<String>() {
+                    public void onCompleted(Exception e,
+                                            String data) {
+                        // process the data or error
+                        JSONArray jsonArray = null;
+                        try {
+                            jsonArray = new JSONArray(data);
+                            processData(jsonArray);
+                        } catch (JSONException e1) {
+                            e1.printStackTrace();
+                        }
+
+                    }
+                });
     }
 }
