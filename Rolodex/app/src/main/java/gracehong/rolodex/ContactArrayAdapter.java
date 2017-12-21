@@ -25,7 +25,7 @@ public class ContactArrayAdapter extends RecyclerView.Adapter<ContactViewHolder>
         String company = myContacts.get(position).getCompany();
         String date = myContacts.get(position).getStartDate();
         String email = myContacts.get(position).getEmail();
-        String bio = myContacts.get(position).getEmail();
+        String bio = myContacts.get(position).getBio();
 
         holder.name.setText(fullName);
         holder.company.setText(company);
