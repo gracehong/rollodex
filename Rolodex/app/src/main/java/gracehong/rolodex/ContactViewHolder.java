@@ -9,6 +9,9 @@ import org.w3c.dom.Text;
 
 /**
  * Created by Grace on 12/20/2017.
+ * This class helps to bind the views associated with the custom contact_layout,
+ * so that we can avoid a lot of R.id.. finding when loading information into this layout
+ * Also, needed by RecyclerView ;)
  */
 
 public class ContactViewHolder extends RecyclerView.ViewHolder {

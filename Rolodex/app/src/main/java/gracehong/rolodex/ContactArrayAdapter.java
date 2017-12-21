@@ -12,6 +12,9 @@ import java.util.ArrayList;
 
 /**
  * Created by Grace on 12/20/2017.
+ * Custom Array Adapter for the contact class which specifies how to load the data from one
+ * individual contact object into the pertinent fields of the custom contact_layout xml (as referenced
+ * by the contact view holder class)
  */
 
 public class ContactArrayAdapter extends RecyclerView.Adapter<ContactViewHolder> {
@@ -19,9 +22,10 @@ public class ContactArrayAdapter extends RecyclerView.Adapter<ContactViewHolder>
     private ArrayList<Contact> myContacts;
     private Context context;
 
+
     public ContactArrayAdapter(ArrayList<Contact> contactList, Context context) {
         myContacts = contactList;
-        this.context = context;
+        this.context = context; //need to initialize with context, for image loading via Picasso
     }
 
     @Override
@@ -39,6 +43,7 @@ public class ContactArrayAdapter extends RecyclerView.Adapter<ContactViewHolder>
         holder.email.setText(email);
         holder.bio.setText(bio);
 
+        //Load image using Picasso Library
         Picasso.with(context).load(imgURL).resize(200, 200)
                 .centerCrop().into(holder.image);
     }
